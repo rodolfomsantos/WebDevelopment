@@ -13,7 +13,8 @@ var commentRoutes = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes = require("./routes/index")
 
-const port = 3000;
+// we have to define this constante in order that this functions after in heroku
+const PORT = process.env.PORT || 3000;
 
 // we have to add the useNewUrlParser and the useUnifiedTopology 
 //as true so that we don't have a depreciation error
@@ -75,7 +76,8 @@ app.use("/", indexRoutes);
 app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 
-// Starting the server
-app.listen(port, function () {
-    console.log('Listening at http://localhost:' + port)
-});
+// start the server
+// we have to use this method if we want to delpy the app on heroku
+app.listen(PORT, () => {
+    console.log(`Server is listening on: http://localhost:${PORT}`);
+  });
