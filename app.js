@@ -29,7 +29,7 @@ const PORT = process.env.PORT || 3000;
 // for this we have to comment the one we don't want to use at the moment.
 // it is better only to launch the app to Atlas after testing with the local database
 //so that we are not alway switching databases we will export the URL
-// of each database usin export (name in caps that we want to give):(url of the databese)
+// of each database usin export (name in ALLcaps that we want to give):(url of the local databese)
 // so that then we just call that name
 mongoose.connect(process.env.DATABASEURL, {
     useNewUrlParser: true,
@@ -39,10 +39,13 @@ mongoose.connect(process.env.DATABASEURL, {
 // we have to add the useNewUrlParser and the useUnifiedTopology 
 //as true so that we don't have a depreciation error
 // bellow is the production database in Atlas. If We want only to use the local database in local we have to use the one above
-/* mongoose.connect("mongodb+srv://dbWebdeveloper:"+DB_PASS+"@cluster0-5k8o8.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority", {
+// in order not to switch the databse in porduction we need to set the variable 
+// in the heroku system using the same name given for the local but wit the url of Atlas
+// we do this using int command line heroku config: set (name given)=Atlas URL
+mongoose.connect("mongodb+srv://dbWebdeveloper:"+DB_PASS+"@cluster0-5k8o8.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true
-}) */
+})
     // and we use this to verify if we are connected to the database
     // or to see the error in case of problems
     .then(() => console.log("Connected to the database..."))
