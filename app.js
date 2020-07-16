@@ -40,12 +40,13 @@ mongoose.connect(process.env.DATABASEURL, {
 //as true so that we don't have a depreciation error
 // bellow is the production database in Atlas. If We want only to use the local database in local we have to use the one above
 // in order not to switch the databse in porduction we need to set the variable 
-// in the heroku system using the same name given for the local but wit the url of Atlas
+// in the heroku system in settings using the same name given for the local but wit the url of Atlas
 // we do this using int command line heroku config: set (name given)=Atlas URL
-mongoose.connect("mongodb+srv://dbWebdeveloper:"+DB_PASS+"@cluster0-5k8o8.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority", {
+// so after this we can now comment the connection to Atlas
+/* mongoose.connect("mongodb+srv://dbWebdeveloper:"+DB_PASS+"@cluster0-5k8o8.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true
-})
+}) */
     // and we use this to verify if we are connected to the database
     // or to see the error in case of problems
     .then(() => console.log("Connected to the database..."))
