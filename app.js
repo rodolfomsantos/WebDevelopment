@@ -28,7 +28,10 @@ const PORT = process.env.PORT || 3000;
 // we have to switch between databases so that we dont't contaminate the porduction app
 // for this we have to comment the one we don't want to use at the moment.
 // it is better only to launch the app to Atlas after testing with the local database
-mongoose.connect("mongodb://localhost/yelp_camp", {
+//so that we are not alway switching databases we will export the URL
+// of each database usin export (name in caps that we want to give):(url of the databese)
+// so that then we just call that name
+mongoose.connect(process.env.DATABASEURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
