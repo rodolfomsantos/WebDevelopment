@@ -8,7 +8,8 @@ var express = require("express"),
     methodOverride = require("method-override"),
     User = require("./models/user")
 
-// we have to require dotenv so that we can use .env file to store hte DB pass
+//we had to intall dotenv so that we can use these files 
+//we have to require dotenv so that we can use .env file to store hte DB pass
 require('dotenv').config()
 
 // requiring Routes
@@ -16,18 +17,29 @@ var commentRoutes = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes = require("./routes/index")
 
-// defining the pass varable
+// defining the DB pass variable
+// wee could have also have encoded the username in the .env file
 const DB_PASS = process.env.DB_PASS;
 
 // we have to define this constante in order that this functions after in heroku
 const PORT = process.env.PORT || 3000;
 
-// we have to add the useNewUrlParser and the useUnifiedTopology 
-//as true so that we don't have a depreciation error
-mongoose.connect("mongodb+srv://dbWebdeveloper:"+DB_PASS+"@cluster0-5k8o8.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority", {
+// local database.
+// we have to switch between databases so that we dont't contaminate the porduction app
+// for this we have to comment the one we don't want to use at the moment.
+// it is better only to launch the app to Atlas after testing with the local database
+mongoose.connect("mongodb://localhost/yelp_camp", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
+
+// we have to add the useNewUrlParser and the useUnifiedTopology 
+//as true so that we don't have a depreciation error
+// bellow is the production database in Atlas. If We want only to use the local database in local we have to use the one above
+/* mongoose.connect("mongodb+srv://dbWebdeveloper:"+DB_PASS+"@cluster0-5k8o8.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}) */
     // and we use this to verify if we are connected to the database
     // or to see the error in case of problems
     .then(() => console.log("Connected to the database..."))
