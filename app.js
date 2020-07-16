@@ -10,7 +10,7 @@ var express = require("express"),
 
 //we had to intall dotenv so that we can use these files 
 //we have to require dotenv so that we can use .env file to store hte DB pass
-/* require('dotenv').config() */
+require('dotenv').config()
 
 // requiring Routes
 var commentRoutes = require("./routes/comments"),
@@ -19,8 +19,7 @@ var commentRoutes = require("./routes/comments"),
 
 // defining the DB pass variable
 // wee could have also have encoded the username in the .env file
-/* const DB_PASS = process.env.DB_PASS; */
-
+const DB_PASS = process.env.DB_PASS;
 
 // we have to define this constante in order that this functions after in heroku
 const PORT = process.env.PORT || 3000;
@@ -44,8 +43,6 @@ mongoose.connect(process.env.DATABASEURL, {
 // in the heroku system in settings using the same name given for the local but wit the url of Atlas
 // we do this using int command line heroku config: set (name given)=Atlas URL
 // so after this we can now comment the connection to Atlas
-// and like this we no longer need to use the .env method used earlier!!!
-//ATENTION: IF WE USE THE SYSTEM VARIABLES IN HEROKU WE HAVE TO HARDCODE THE PASSWORD IN THE URL
 /* mongoose.connect("mongodb+srv://dbWebdeveloper:"+DB_PASS+"@cluster0-5k8o8.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true
