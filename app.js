@@ -8,17 +8,23 @@ var express = require("express"),
     methodOverride = require("method-override"),
     User = require("./models/user")
 
+// we have to require dotenv so that we can use .env file to store hte DB pass
+require('dotenv').config()
+
 // requiring Routes
 var commentRoutes = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes = require("./routes/index")
+
+// defining the pass varable
+const DB_PASS = process.env.DB_PASS;
 
 // we have to define this constante in order that this functions after in heroku
 const PORT = process.env.PORT || 3000;
 
 // we have to add the useNewUrlParser and the useUnifiedTopology 
 //as true so that we don't have a depreciation error
-mongoose.connect("mongodb+srv://dbWebdeveloper:pass12345@cluster0-5k8o8.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://dbWebdeveloper:"+DB_PASS+"@cluster0-5k8o8.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
