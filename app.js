@@ -18,9 +18,7 @@ const PORT = process.env.PORT || 3000;
 
 // we have to add the useNewUrlParser and the useUnifiedTopology 
 //as true so that we don't have a depreciation error
-mongoose.connect("mongodb+srv://dbWebdeveloper:" + process.env.MONGO_ATLAS_PW + "@cluster0-5k8o8.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority",
-{
-    useMongoClient: true,
+mongoose.connect("mongodb+srv://dbWebdeveloper:pass12345@cluster0-5k8o8.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -82,4 +80,4 @@ app.use("/campgrounds/:id/comments", commentRoutes);
 // we have to use this method if we want to delpy the app on heroku
 app.listen(PORT, () => {
     console.log(`Server is listening on: http://localhost:${PORT}`);
-});
+  });
