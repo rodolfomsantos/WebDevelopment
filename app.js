@@ -30,7 +30,7 @@ const PORT = process.env.PORT || 3000;
 // for this we have to comment the one we don't want to use at the moment.
 // it is better only to launch the app to Atlas after testing with the local database
 //so that we are not alway switching databases we will export the URL
-// of each database usin export (name in ALLcaps that we want to give):(url of the local databese)
+// of each database usin "export (name in ALLcaps that we want to give):(url of the local databese)
 // so that then we just call that name
 mongoose.connect(process.env.DATABASEURL, {
     useNewUrlParser: true,
